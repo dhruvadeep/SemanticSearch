@@ -1,0 +1,42 @@
+[project]
+name = "semanticsearch"
+version = "0.1.0"
+description = "HEHE"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "fastapi[all]>=0.115.11",
+    "pillow>=11.1.0",
+    "tantivy>=0.22.0",
+    "torch>=2.6.0",
+    "torchvision>=0.21.0",
+    "transformers>=4.49.0",
+    "uvicorn>=0.34.0",
+]
+
+
+[tool.uv.sources]
+torch = [
+    # If you want a CPU-only version of PyTorch, replace the next line with this one:
+    # { index = "pytorch-cpu", marker = "sys_platform == 'win32' or sys_platform == 'linux'" },
+
+    { index = "pytorch-cu118", marker = "sys_platform == 'linux' or sys_platform == 'win32'" },
+    { index = "pytorch-cpu", marker = "sys_platform == 'darwin'" },
+]
+torchvision = [
+    # If you want a CPU-only version of PyTorch, replace the next line with this one:
+    # { index = "pytorch-cpu", marker = "sys_platform == 'win32' or sys_platform == 'linux'" },
+
+    { index = "pytorch-cu118", marker = "sys_platform == 'linux' or sys_platform == 'win32'" },
+    { index = "pytorch-cpu", marker = "sys_platform == 'darwin'" },
+]
+
+[[tool.uv.index]]
+name = "pytorch-cpu"
+url = "https://download.pytorch.org/whl/cpu"
+explicit = true
+
+[[tool.uv.index]]
+name = "pytorch-cu118"
+url = "https://download.pytorch.org/whl/cu118"
+explicit = true
